@@ -85,18 +85,3 @@ app.listen(port, () => console.log(`Backend running on http://localhost:${port}`
 
 
 ///////////////////////////////////////////////////////////////
-// POST /cards/:cardNumber/recharge
-// body: { amount }
-app.post('/cards/:cardNumber/recharge', (req, res) => {
-  const { amount } = req.body;
-  if (typeof amount !== 'number' || amount <= 0) {
-    return res.status(400).json({ message: '充值金额必须为正数' });
-  }
-  const cardOwner = findStudentByCard(req.params.cardNumber);
-  if (!cardOwner) return res.status(404).json({ message: '未找到卡片' });
-  cardOwner.mealCard.balance += amount;
-  res.status(200).json({ balance: cardOwner.mealCard.balance });
-});
-
-const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Backend running on http://localhost:${port}`));
