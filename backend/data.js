@@ -1,4 +1,4 @@
-// 简单的内存数据，基于现有 Java 示例
+// 简单的内存数据，基于现有 Java 示例biuhno
 const { v4: uuidv4 } = require('uuid');
 
 const Office = (officeId, businessHours) => ({ officeId, businessHours });
